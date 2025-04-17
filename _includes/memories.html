@@ -1,0 +1,29 @@
+<div class="memories">
+<div class="preview-image" data-name="{{ memories.image }}" style="background-image: url('{{ "/images/memories/" | append: memories.image | relative_url }}')"></div>  
+  <p>
+    {{ memories.description | markdownify | remove: '<p>' | remove: '</p>' }}
+  </p>
+  <div class="links">
+    <a href="#"> <i class="fas fa-calendar-alt"></i> {{ memories.time }}</a>
+    <a href="#"> <i class="fas fa-map-marker-alt"></i> {{ memories.location }}</a>
+  </div>
+  
+  <div class="spacer"></div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll('.preview-image');
+    
+    images.forEach(image => {
+      image.addEventListener('click', function(event) {
+        event.preventDefault(); // 阻止默认的链接跳转行为
+        this.classList.toggle('zoomed');
+        console.log('当前图片名称:', this.getAttribute('data-name')); // 输出当前图片的名称
+      });
+    });
+  });
+</script>
+
+
